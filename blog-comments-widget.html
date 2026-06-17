@@ -13,27 +13,29 @@
       --gold:       #C9A84C;
       --gold-light: #E8D5A3;
       --navy:       #1A2A3A;
-      --navy-mid:   #243448;
       --slate:      #4A5568;
       --mist:       #F7F8FA;
       --white:      #FFFFFF;
       --border:     #E2E8F0;
-      --success:    #2D7A4F;
-      --error:      #B91C1C;
       --radius:     10px;
       --shadow:     0 2px 12px rgba(26,42,58,0.08);
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: transparent;
+      background: #ffffff;
       color: var(--navy);
+      padding: 24px 16px 48px;
     }
 
-    .comments-wrapper {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0 16px 48px;
+    .comments-wrapper { max-width: 780px; margin: 0 auto; }
+
+    /* ── Gold rule ── */
+    .gold-rule {
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
+      border-radius: 2px;
+      margin-bottom: 28px;
     }
 
     /* ── Section header ── */
@@ -41,8 +43,8 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 32px;
-      padding-bottom: 18px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
       border-bottom: 2px solid var(--gold);
     }
     .section-header h2 {
@@ -50,7 +52,6 @@
       font-size: 1.75rem;
       font-weight: 600;
       color: var(--navy);
-      letter-spacing: -0.01em;
     }
     .comment-count-badge {
       background: var(--gold);
@@ -63,74 +64,35 @@
     }
 
     /* ── Comment cards ── */
-    .comments-list { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+    .comments-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
 
     .comment-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px 24px;
+      padding: 20px 22px;
       box-shadow: var(--shadow);
       transition: border-color 0.2s;
     }
     .comment-card:hover { border-color: var(--gold-light); }
 
-    .comment-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
+    .comment-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
     .avatar {
       width: 40px; height: 40px;
       border-radius: 50%;
       background: var(--navy);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 1rem; font-weight: 600;
       color: var(--gold);
       flex-shrink: 0;
     }
-    .commenter-name {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--navy);
-    }
-    .comment-date {
-      font-size: 0.75rem;
-      color: var(--slate);
-      margin-top: 2px;
-    }
-    .comment-body {
-      font-size: 0.93rem;
-      line-height: 1.7;
-      color: var(--slate);
-    }
+    .commenter-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+    .comment-date  { font-size: 0.75rem; color: var(--slate); margin-top: 2px; }
+    .comment-body  { font-size: 0.93rem; line-height: 1.75; color: var(--slate); }
 
-    /* ── Empty state ── */
-    .empty-state {
-      text-align: center;
-      padding: 40px 24px;
-      background: var(--mist);
-      border-radius: var(--radius);
-      border: 1px dashed var(--border);
-      margin-bottom: 40px;
-    }
-    .empty-state p {
-      color: var(--slate);
-      font-size: 0.95rem;
-      margin-top: 8px;
-    }
-    .empty-icon { font-size: 2rem; margin-bottom: 8px; }
-
-    /* ── Loading ── */
-    .loading-state {
-      text-align: center;
-      padding: 32px;
-      color: var(--slate);
-      font-size: 0.9rem;
-    }
+    /* ── States ── */
+    .loading-state { text-align: center; padding: 32px; color: var(--slate); font-size: 0.9rem; }
     .spinner {
       width: 28px; height: 28px;
       border: 3px solid var(--border);
@@ -141,119 +103,70 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Error state ── */
-    .error-state {
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
+    .empty-state {
+      text-align: center;
+      padding: 36px 24px;
+      background: var(--mist);
       border-radius: var(--radius);
-      padding: 16px 20px;
-      color: var(--error);
-      font-size: 0.88rem;
-      margin-bottom: 32px;
+      border: 1px dashed var(--border);
+      margin-bottom: 36px;
+      color: var(--slate);
+      font-size: 0.93rem;
     }
+    .empty-icon { font-size: 2rem; margin-bottom: 8px; }
 
-    /* ── Submit form ── */
+    /* ── Form section ── */
     .form-section {
       background: var(--mist);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 28px 28px 24px;
+      padding: 24px 24px 8px;
     }
     .form-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--navy);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .form-subtitle {
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       color: var(--slate);
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
 
-    .form-row { display: flex; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; flex: 1; }
-    .form-group label {
+    /* Jotform iFrame */
+    .jotform-frame {
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      min-height: 420px;
+      display: block;
+    }
+
+    /* ── Refresh button ── */
+    .refresh-bar {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .refresh-btn {
+      background: none;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--navy);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .form-group input,
-    .form-group textarea {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      color: var(--navy);
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      padding: 10px 14px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      resize: none;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
-    }
-    .form-group input.error,
-    .form-group textarea.error { border-color: var(--error); }
-    .field-error { font-size: 0.75rem; color: var(--error); margin-top: 2px; }
-    .email-note { font-size: 0.72rem; color: var(--slate); margin-top: 2px; font-style: italic; }
-
-    .submit-btn {
-      width: 100%;
-      padding: 13px;
-      background: var(--navy);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 7px;
+      padding: 6px 16px;
+      border-radius: 20px;
       cursor: pointer;
       letter-spacing: 0.04em;
-      transition: background 0.2s, transform 0.1s;
-      margin-top: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      transition: background 0.2s, color 0.2s;
     }
-    .submit-btn:hover:not(:disabled) { background: var(--gold); }
-    .submit-btn:active:not(:disabled) { transform: scale(0.99); }
-    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-    /* ── Success message ── */
-    .success-msg {
-      display: none;
-      background: #F0FDF4;
-      border: 1px solid #BBF7D0;
-      border-radius: var(--radius);
-      padding: 18px 22px;
-      color: var(--success);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-align: center;
-      margin-top: 12px;
-    }
-    .success-msg.visible { display: block; }
-
-    /* ── Gold accent rule ── */
-    .gold-rule {
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
-      border-radius: 2px;
-      margin-bottom: 28px;
-    }
+    .refresh-btn:hover { background: var(--gold); color: var(--white); }
 
     @media (max-width: 560px) {
-      .form-row { flex-direction: column; gap: 0; }
-      .form-section { padding: 20px 16px; }
       .section-header h2 { font-size: 1.4rem; }
+      .form-section { padding: 18px 14px 6px; }
     }
   </style>
 </head>
@@ -265,7 +178,7 @@
 
   <div class="section-header">
     <h2>Reader Comments</h2>
-    <span class="comment-count-badge" id="countBadge">...</span>
+    <span class="comment-count-badge" id="countBadge">Loading…</span>
   </div>
 
   <!-- Comments display -->
@@ -276,74 +189,60 @@
     </div>
   </div>
 
-  <!-- Submit form -->
+  <div class="refresh-bar">
+    <button class="refresh-btn" onclick="loadComments()">↻ Refresh Comments</button>
+  </div>
+
+  <!-- Submit form via native Jotform iFrame (bypasses CORS entirely) -->
   <div class="form-section">
     <div class="form-title">Leave a Comment</div>
     <div class="form-subtitle">We'd love to hear your thoughts — your email will not be published.</div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="fname">Full Name *</label>
-        <input type="text" id="fname" placeholder="Jane Smith" />
-        <span class="field-error" id="fnameErr"></span>
-      </div>
-      <div class="form-group">
-        <label for="femail">Email Address *</label>
-        <input type="email" id="femail" placeholder="jane@email.com" />
-        <span class="field-error" id="femailErr"></span>
-        <span class="email-note">Not published</span>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="fcomment">Your Comment *</label>
-      <textarea id="fcomment" rows="5" placeholder="Share your thoughts on this post…"></textarea>
-      <span class="field-error" id="fcommentErr"></span>
-    </div>
-
-    <button class="submit-btn" id="submitBtn" onclick="submitComment()">
-      Post Comment
-    </button>
-
-    <div class="success-msg" id="successMsg">
-      ✓ Thank you for your comment! We appreciate your feedback and will respond shortly.
-    </div>
+    <iframe
+      class="jotform-frame"
+      id="jotformFrame"
+      src="https://form.jotform.com/261665333199061"
+      title="Leave a Comment"
+      allowtransparency="true"
+      allow="geolocation; microphone; camera"
+      scrolling="no"
+      onload="resizeFrame(this)">
+    </iframe>
   </div>
 
 </div>
 
 <script>
-  // ── Config ──────────────────────────────────────────────
   const FORM_ID  = '261665333199061';
   const API_KEY  = 'e97eeee6c6ba657ce4496e610276b94e';
   const API_BASE = 'https://api.jotform.com';
 
-  // ── Field mapping (Jotform question IDs — auto-detected below) ──
-  let FIELD_NAME    = null;
-  let FIELD_EMAIL   = null;
-  let FIELD_COMMENT = null;
-
-  // ── Fetch form questions to map field IDs ────────────────
-  async function getFieldIds() {
-    try {
-      const res = await fetch(`${API_BASE}/form/${FORM_ID}/questions?apiKey=${API_KEY}`);
-      const data = await res.json();
-      if (data.responseCode !== 200) return;
-      const qs = data.content;
-      for (const id in qs) {
-        const q = qs[id];
-        const t = (q.text || q.name || '').toLowerCase();
-        const type = (q.type || '').toLowerCase();
-        if (type === 'control_fullname' || t.includes('name'))    FIELD_NAME    = id;
-        if (type === 'control_email'    || t.includes('email'))   FIELD_EMAIL   = id;
-        if (type === 'control_textarea' || t.includes('comment')) FIELD_COMMENT = id;
-      }
-    } catch(e) { /* silent */ }
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+      .replace(/'/g,'&#039;');
   }
 
-  // ── Fetch & render comments ──────────────────────────────
+  function resizeFrame(frame) {
+    try { frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px'; } catch(e) {}
+  }
+
+  // Listen for Jotform's postMessage after submission to auto-refresh comments
+  window.addEventListener('message', function(e) {
+    if (e.data && typeof e.data === 'string' && e.data.indexOf('JotForm') !== -1) {
+      setTimeout(loadComments, 2000);
+    }
+    // Jotform height resize messages
+    if (e.data && e.data.action === 'setHeight') {
+      const frame = document.getElementById('jotformFrame');
+      if (frame && e.data.value) frame.style.height = e.data.value + 'px';
+    }
+  });
+
   async function loadComments() {
     const area = document.getElementById('commentsArea');
+    area.innerHTML = '<div class="loading-state"><div class="spinner"></div>Fetching comments…</div>';
+
     try {
       const res  = await fetch(`${API_BASE}/form/${FORM_ID}/submissions?apiKey=${API_KEY}&limit=100&orderby=created_at&direction=DESC`);
       const data = await res.json();
@@ -351,38 +250,62 @@
       if (data.responseCode !== 200) throw new Error('API error');
 
       const subs = (data.content || []).filter(s => s.status === 'ACTIVE');
+
       document.getElementById('countBadge').textContent =
-        subs.length === 1 ? '1 comment' : `${subs.length} comments`;
+        subs.length === 0 ? '0 comments' :
+        subs.length === 1 ? '1 comment'  : `${subs.length} comments`;
 
       if (subs.length === 0) {
         area.innerHTML = `
           <div class="empty-state">
             <div class="empty-icon">💬</div>
             <strong>No comments yet</strong>
-            <p>Be the first to share your thoughts below.</p>
+            <p style="margin-top:6px">Be the first to share your thoughts below.</p>
           </div>`;
         return;
       }
 
       const cards = subs.map(s => {
-        // Pull name & comment from answers regardless of field ID
         let name = 'Anonymous', comment = '', date = '';
         const answers = s.answers || {};
+
         for (const key in answers) {
-          const a = answers[key];
+          const a     = answers[key];
           const label = (a.text || a.name || '').toLowerCase();
-          const val   = typeof a.answer === 'object'
-            ? Object.values(a.answer).filter(Boolean).join(' ')
-            : (a.answer || '');
-          if (label.includes('name') && val)    name    = val;
-          if (label.includes('comment') && val) comment = val;
+          let val     = '';
+
+          if (typeof a.answer === 'object' && a.answer !== null) {
+            val = Object.values(a.answer).filter(Boolean).join(' ').trim();
+          } else {
+            val = (a.answer || '').toString().trim();
+          }
+
+          if (!val) continue;
+          if (label.includes('name'))    name    = val;
+          if (label.includes('comment') || label.includes('thought') || label.includes('message')) comment = val;
         }
+
+        // Fallback: grab longest answer as comment
+        if (!comment) {
+          let longest = '';
+          for (const key in answers) {
+            const a   = answers[key];
+            const val = typeof a.answer === 'object'
+              ? Object.values(a.answer || {}).filter(Boolean).join(' ')
+              : (a.answer || '').toString();
+            if (val.length > longest.length) longest = val;
+          }
+          comment = longest;
+        }
+
+        if (!comment || comment === name) return '';
+
         if (s.created_at) {
           const d = new Date(s.created_at.replace(' ', 'T'));
           date = d.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
         }
-        if (!comment) return '';
-        const initial = name.trim().charAt(0).toUpperCase();
+
+        const initial = name.trim().charAt(0).toUpperCase() || '?';
         return `
           <div class="comment-card">
             <div class="comment-meta">
@@ -396,109 +319,20 @@
           </div>`;
       }).filter(Boolean).join('');
 
-      area.innerHTML = `<div class="comments-list">${cards}</div>`;
+      area.innerHTML = cards
+        ? `<div class="comments-list">${cards}</div>`
+        : `<div class="empty-state"><div class="empty-icon">💬</div><strong>No comments yet</strong><p style="margin-top:6px">Be the first to share your thoughts below.</p></div>`;
 
-    } catch(e) {
+    } catch(err) {
       area.innerHTML = `
-        <div class="error-state">
-          Unable to load comments right now. Please refresh the page to try again.
+        <div class="empty-state" style="border-color:#FECACA;background:#FEF2F2;color:#B91C1C;">
+          Unable to load comments right now. <button class="refresh-btn" onclick="loadComments()" style="margin-top:10px;display:block;margin-left:auto;margin-right:auto;">Try Again</button>
         </div>`;
       document.getElementById('countBadge').textContent = '—';
     }
   }
 
-  // ── Submit new comment ───────────────────────────────────
-  async function submitComment() {
-    const nameEl    = document.getElementById('fname');
-    const emailEl   = document.getElementById('femail');
-    const commentEl = document.getElementById('fcomment');
-    const btn       = document.getElementById('submitBtn');
-    const successEl = document.getElementById('successMsg');
-
-    // Clear previous errors
-    ['fname','femail','fcomment'].forEach(id => {
-      document.getElementById(id).classList.remove('error');
-    });
-    ['fnameErr','femailErr','fcommentErr'].forEach(id => {
-      document.getElementById(id).textContent = '';
-    });
-    successEl.classList.remove('visible');
-
-    // Validate
-    let valid = true;
-    if (!nameEl.value.trim()) {
-      nameEl.classList.add('error');
-      document.getElementById('fnameErr').textContent = 'Please enter your name.';
-      valid = false;
-    }
-    if (!emailEl.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
-      emailEl.classList.add('error');
-      document.getElementById('femailErr').textContent = 'Please enter a valid email.';
-      valid = false;
-    }
-    if (!commentEl.value.trim()) {
-      commentEl.classList.add('error');
-      document.getElementById('fcommentErr').textContent = 'Please write a comment.';
-      valid = false;
-    }
-    if (!valid) return;
-
-    btn.disabled = true;
-    btn.textContent = 'Posting…';
-
-    try {
-      // Build submission payload using detected field IDs
-      const payload = new URLSearchParams();
-
-      if (FIELD_NAME && FIELD_EMAIL && FIELD_COMMENT) {
-        // Use mapped field IDs
-        const nameType = 'full';
-        payload.append(`submission[${FIELD_NAME}][first]`, nameEl.value.trim().split(' ')[0]);
-        payload.append(`submission[${FIELD_NAME}][last]`,  nameEl.value.trim().split(' ').slice(1).join(' ') || '');
-        payload.append(`submission[${FIELD_EMAIL}]`,       emailEl.value.trim());
-        payload.append(`submission[${FIELD_COMMENT}]`,     commentEl.value.trim());
-      } else {
-        // Fallback: send as raw answers
-        payload.append('submission[1]', nameEl.value.trim());
-        payload.append('submission[2]', emailEl.value.trim());
-        payload.append('submission[3]', commentEl.value.trim());
-      }
-
-      const res  = await fetch(`${API_BASE}/form/${FORM_ID}/submissions?apiKey=${API_KEY}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: payload.toString()
-      });
-      const data = await res.json();
-
-      if (data.responseCode === 200 || data.responseCode === 201) {
-        successEl.classList.add('visible');
-        nameEl.value = ''; emailEl.value = ''; commentEl.value = '';
-        setTimeout(loadComments, 1500); // refresh list
-      } else {
-        throw new Error('Submit failed');
-      }
-    } catch(e) {
-      document.getElementById('fcommentErr').textContent =
-        'Something went wrong. Please try again.';
-      commentEl.classList.add('error');
-    }
-
-    btn.disabled = false;
-    btn.textContent = 'Post Comment';
-  }
-
-  // ── Utility ──────────────────────────────────────────────
-  function escHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-              .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
-  }
-
-  // ── Init ─────────────────────────────────────────────────
-  (async () => {
-    await getFieldIds();
-    await loadComments();
-  })();
+  loadComments();
 </script>
 </body>
 </html>
